@@ -29,15 +29,20 @@ export default {
     .then(data => this.all_drinks = data)
 
     eventBus.$on('drink-selected', (index) => {
-      // debugger
       fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + index)
       .then(res => res.json())
       .then(data => this.drinky = data)
+
+    eventBus.$on('close-pop-up', (drink) => {
+      this.drinky = []
+    })
     })
   }
 }
 </script>
 
 <style>
-
+  #app {
+    font-family: monospace;
+  }
 </style>

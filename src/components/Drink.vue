@@ -1,7 +1,7 @@
 <template>
   <div>
     <li v-on:click="handleClick">
-      <img :src="drink.strDrinkThumb" width="150" alt="mocktail">
+      <img :src="drink.strDrinkThumb" alt="mocktail">
     </li>
   </div>
 </template>
@@ -21,4 +21,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  li {
+    margin: 2px;
+    margin-bottom: 0px;
+    margin-top: 1px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
 </style>

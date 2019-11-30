@@ -3,6 +3,7 @@
   <div v-if="drink" class="modal-content">
     <label v-for="detail in drink.drinks">
     <h2>{{detail.strDrink}}</h2>
+    <button v-on:click="handleClose" type="button" class="button">x</button>
     <ul>
       <li v-if="detail.strIngredient1">{{detail.strMeasure1}} {{detail.strIngredient1}}</li>
       <li v-if="detail.strIngredient2">{{detail.strMeasure2}} {{detail.strIngredient2}}</li>
@@ -20,6 +21,8 @@
 </template>
 
 <script>
+import {eventBus} from "../main.js"
+
 export default {
   name: "drink-detail",
   props: ["drink"],
@@ -28,6 +31,9 @@ export default {
       if((this.drink).length == 0){
         return "modal"
       }
+    },
+    handleClose(){
+      eventBus.$emit('close-pop-up', this.drink)
     }
   }
 }
@@ -46,5 +52,8 @@ export default {
      }
   .modal {
     display: none;
+  }
+  .button {
+
   }
 </style>
