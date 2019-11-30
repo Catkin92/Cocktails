@@ -1,28 +1,43 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <drinks-list :mocktails="all_drinks.drinks"></drinks-list>
+    <drink-detail :drink="drinky"></drink-detail>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DrinkDetail from './components/DrinkDetail.vue'
+import DrinksList from './components/DrinksList.vue'
+import {eventBus} from './main.js'
 
 export default {
   name: 'app',
+  data(){
+    return{
+      all_drinks: [],
+      selectedIndex: null,
+      drinky: []
+    }
+  },
   components: {
-    HelloWorld
+    "drinks-list": DrinksList,
+    "drink-detail": DrinkDetail
+  },
+  mounted(){
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic")
+    .then(res => res.json())
+    .then(data => this.all_drinks = data)
+
+    eventBus.$on('drink-selected', (index) => {
+      // debugger
+      fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + index)
+      .then(res => res.json())
+      .then(data => this.drinky = data)
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
