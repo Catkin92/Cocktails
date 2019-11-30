@@ -3,7 +3,7 @@
   <div v-if="drink" class="modal-content">
     <label v-for="detail in drink.drinks">
     <h2>{{detail.strDrink}}</h2>
-    <button v-on:click="handleClose" type="button" class="button">x</button>
+    <button v-on:click="handleClose" type="button" class="button"><b>X</b></button>
     <ul>
       <li v-if="detail.strIngredient1">{{detail.strMeasure1}} {{detail.strIngredient1}}</li>
       <li v-if="detail.strIngredient2">{{detail.strMeasure2}} {{detail.strIngredient2}}</li>
@@ -49,11 +49,18 @@ export default {
       padding: 1rem 1.5rem;
       width: 24rem;
       border-radius: 0.5rem;
+      box-shadow: 1px 2px;
      }
   .modal {
     display: none;
   }
   .button {
-
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+  }
+  .button:active {
+    border: 2px solid black;
   }
 </style>

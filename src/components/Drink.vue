@@ -26,6 +26,9 @@ export default {
     margin-bottom: 0px;
     margin-top: 1px;
   }
+  li:hover {
+    border: 3px solid white;
+  }
   img {
     width: 100%;
     height: auto;
