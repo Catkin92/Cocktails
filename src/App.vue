@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <drink-detail :drink="drinky"></drink-detail>
-    <drinks-list :mocktails="all_drinks.drinks"></drinks-list>
+    <drink-detail :drink="drink"></drink-detail>
+    <drinks-list :filteredDrinks="filteredDrinks.drinks" :categories="categories.drinks" ></drinks-list>
   </div>
 </template>
 
@@ -14,9 +14,11 @@ export default {
   name: 'app',
   data(){
     return{
-      all_drinks: [],
+      // starter_drinks: [],
       selectedIndex: null,
-      drinky: []
+      drink: [],
+      categories: [],
+      filteredDrinks: []
     }
   },
   components: {
@@ -24,18 +26,28 @@ export default {
     "drink-detail": DrinkDetail
   },
   mounted(){
-    fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic")
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list")
     .then(res => res.json())
-    .then(data => this.all_drinks = data)
+    .then(data => this.categories = data)
+
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink")
+    .then(res => res.json())
+    .then(data => this.filteredDrinks = data)
 
     eventBus.$on('drink-selected', (index) => {
       fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + index)
       .then(res => res.json())
-      .then(data => this.drinky = data)
+      .then(data => this.drink = data)
+    })
 
     eventBus.$on('close-pop-up', (drink) => {
-      this.drinky = []
+      this.drink = []
     })
+
+    eventBus.$on('select-category', (category) => {
+      fetch("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=" + category)
+      .then(res => res.json())
+      .then(data => this.filteredDrinks = data)
     })
   }
 }
