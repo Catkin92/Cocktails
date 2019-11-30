@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <drinks-list :mocktails="all_drinks.drinks"></drinks-list>
     <drink-detail :drink="drinky"></drink-detail>
+    <drinks-list :mocktails="all_drinks.drinks"></drinks-list>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
-  <div v-if="drink" id="info">
+  <div :class="addClass()">
+  <div v-if="drink" class="modal-content">
     <label v-for="detail in drink.drinks">
     <h2>{{detail.strDrink}}</h2>
     <ul>
@@ -15,21 +16,35 @@
     <p><i>{{detail.strInstructions}}</i></p>
     </label>
   </div>
+</div>
 </template>
 
 <script>
 export default {
   name: "drink-detail",
-  props: ["drink"]
+  props: ["drink"],
+  methods: {
+    addClass(){
+      if((this.drink).length == 0){
+        return "modal"
+      }
+    }
+  }
 }
 </script>
 
 <style lang="css" scoped>
-  #info {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  .modal-content {
+      position: fixed;
+      top: 40%;
+      background-color: white;
+      opacity: 80%;
+      border: 2px solid black;
+      padding: 1rem 1.5rem;
+      width: 24rem;
+      border-radius: 0.5rem;
+     }
+  .modal {
+    display: none;
   }
 </style>
