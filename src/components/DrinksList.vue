@@ -25,5 +25,6 @@ export default {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-left: 0px;
     }
 </style>

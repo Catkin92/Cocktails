@@ -25,9 +25,10 @@ export default {
     margin: 2px;
     margin-bottom: 0px;
     margin-top: 1px;
+    border: 5px solid white;
   }
   li:hover {
-    border: 3px solid white;
+    border: none;
   }
   img {
     width: 100%;
