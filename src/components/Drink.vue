@@ -1,7 +1,8 @@
 <template>
   <div>
     <li v-on:click="handleClick">
-      <img :src="drink.strDrinkThumb" alt="mocktail">
+      <img :src="drink.strDrinkThumb" alt="cocktail">
+      <!-- <h4>{{drink.strDrink}}</h4> -->
     </li>
   </div>
 </template>
@@ -34,4 +35,5 @@ export default {
     width: 100%;
     height: auto;
   }
+
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <drink-detail :drink="drink"></drink-detail>
+
     <drinks-list :filteredDrinks="filteredDrinks.drinks" :categories="categories.drinks" ></drinks-list>
+
   </div>
 </template>
 
@@ -14,7 +16,6 @@ export default {
   name: 'app',
   data(){
     return{
-      // starter_drinks: [],
       selectedIndex: null,
       drink: [],
       categories: [],
